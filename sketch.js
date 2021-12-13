@@ -56,10 +56,10 @@ function draw() {
 
 function keyPressed() {
   if(keyCode === LEFT_ARROW){
-    fada.x = -15
+    fada.x = fada.x-15
   }
 
   if(keyCode === RIGHT_ARROW){
-    fada.x = 15
+    fada.x = fada.x+15
   }
 }
