@@ -11,7 +11,7 @@ const Body = Matter.Body;
 function preload() {
   starImg = loadImage("images/star.png");
   bgImg = loadImage("images/starNight.png");
-  fdImg = loadAnimation("./images/fairyImage1.png","./images/fairyImage2.png");
+  fdImg = loadAnimation("images/fairyImage1.png","images/fairyImage2.png");
 }
 
 function setup() {
@@ -19,7 +19,7 @@ function setup() {
 
   //criar sprite de fada e adicionar animação para fada
   fada = createSprite(70, 350);
-  fada.addAnimation(fdImg);
+  fada.addAnimation("fadaaaaaaaa",fdImg);
   fada.scale = 0.2;
 
   star = createSprite(650, 30);
@@ -28,7 +28,6 @@ function setup() {
 
   engine = Engine.create();
   world = engine.world;
-
   starBody = Bodies.circle(650, 30, 5, {
     restitution: 0.5,
     isStatic: true
@@ -42,24 +41,26 @@ function setup() {
 function draw() {
   background(bgImg);
 
-  rectMode(CENTER);
-  rect(starBody.position.x,starBody.position.y,650, 30);
+  star.x = starBody.position.x;
+  star.y = starBody.position.y;
 
-	if(star.y > 470 && starBody.position.y > 470 ){
+	if(star.y > 330){
   	Matter.Body.setStatic(starBody,true);
 	}
-  
-  keyPressed();
 
   drawSprites();
 }
 
 function keyPressed() {
   if(keyCode === LEFT_ARROW){
-    fada.x = fada.x-15
+    fada.x = fada.x-30
   }
 
   if(keyCode === RIGHT_ARROW){
-    fada.x = fada.x+15
+    fada.x = fada.x+30
+  }
+
+  if(keyCode === DOWN_ARROW){
+    Matter.Body.setStatic(starBody,false);
   }
 }
